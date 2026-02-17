@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Find Projects{% endblock %}
+
+{% block content %}
+<section class="py-4 bg-white border-bottom shadow-sm">
+    <div class="container">
+        <h1 class="fw-bold mb-2 display-6 text-dark">Find Projects</h1>
+        <p class="text-muted mb-0">Browse projects posted by clients.</p>
+    </div>
+</section>
+
+<section class="py-5 bg-body-secondary">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Sidebar Filters -->
+            <div class="col-lg-3">
+                <div class="card shadow-sm border-0 rounded-4 p-3 sticky-top" style="top: 80px;">
+                    <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-funnel-fill me-2"></i> Filters</h5>
+                    <hr>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Skills</label>
+                        <input type="text" class="form-control" placeholder="E.g., Django, React">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Budget Range (₹)</label>
+                        <div class="d-flex gap-2">
+                            <input type="number" class="form-control" placeholder="Min">
+                            <input type="number" class="form-control" placeholder="Max">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Deadline</label>
+                        <input type="text" class="form-control" placeholder="E.g., 2-3 weeks">
+                    </div>
+                    <div class="d-grid mt-3">
+                        <button class="btn btn-brand-primary fw-bold">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Cards -->
+            <div class="col-lg-9">
+                <div class="mb-4 d-flex">
+                    <form method="get" class="w-100 d-flex">
+                        <input type="text" name="q" value="{{ query }}" class="form-control me-2" placeholder="Search projects...">
+                        <button class="btn btn-primary fw-bold">Search</button>
+                    </form>
+                </div>
+
+                {% for project in projects %}
+                <div class="card shadow-sm border-0 rounded-4 mb-3 p-4">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4 class="fw-bold mb-1 text-dark">{{ project.title }}</h4>
+                            <p class="text-muted mb-2">{{ project.description|truncatewords:25 }}</p>
+                            <span class="badge bg-info text-dark me-2">Budget: ₹{{ project.budget_min }} - ₹{{ project.budget_max }}</span>
+                            <span class="badge bg-warning text-dark me-2">Deadline: {{ project.deadline }}</span>
+                            <p class="mt-2">
+                                {% for skill in project.skills %}
+                                    <span class="badge bg-light text-dark me-1">{{ skill }}</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-3 text-md-end">
+                            <a href="{% url 'project_detail' project.id %}" class="btn btn-outline-brand-primary rounded-pill px-4 fw-semibold">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="alert alert-warning text-center mt-5">
+                    <h4>No projects found</h4>
+                    <p>Try broadening your search or adjusting the filters.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

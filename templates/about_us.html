@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About Us | FreelancersConnect{% endblock %}
+
+{% block content %}
+
+<!-- 1. Hero Section: High Impact and Subtle Gradient -->
+<section class="py-5 bg-white border-bottom shadow-sm">
+    <div class="container text-center py-5">
+        <h1 class="display-3 fw-bolder mb-3 text-dark">
+            Our Story: Building the <span class="text-brand">Future of Work</span>
+        </h1>
+        <p class="lead mt-4 mx-auto text-secondary" style="max-width: 800px;">
+            FreelancersConnect was founded on a simple principle: talent should be borderless. We are dedicated to 
+            bridging the gap between world-class professionals and innovative projects, making remote collaboration 
+            seamless, secure, and rewarding for every user.
+        </p>
+        <!-- The button uses the brand primary style for consistency -->
+        <a href="{% url 'search_freelancers' %}" class="btn btn-brand-primary btn-lg mt-4 shadow-lg rounded-pill px-5 fw-bold">
+            Explore the Marketplace
+        </a>
+    </div>
+</section>
+
+<!-- 2. Core Narrative Section: Mission & Vision (Integrated Layout) -->
+<section class="py-5 bg-body-tertiary">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            
+            <!-- Mission Card -->
+            <div class="col-md-6">
+                <div class="p-4 bg-white rounded-4 shadow-lg border border-brand">
+                    <i class="bi bi-rocket-takeoff-fill fs-3 text-brand mb-3 d-block"></i>
+                    <h2 class="fw-bold mb-3">Our Mission</h2>
+                    <p class="text-muted lead">
+                        To empower professionals by providing a transparent, fair, and high-quality platform 
+                        to showcase their expertise and connect with clients who value excellence.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vision Card -->
+            <div class="col-md-6">
+                 <div class="p-4 bg-white rounded-4 shadow-lg border border-brand">
+                    <i class="bi bi-eye-fill fs-3 text-brand mb-3 d-block"></i>
+                    <h2 class="fw-bold mb-3">Our Vision</h2>
+                    <p class="text-muted lead">
+                        To be the leading global network for remote talent, evolving the way businesses scale 
+                        and how freelancers build their careers in the digital age.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Optional Timeline Image/Detail -->
+            <div class="col-12 mt-5 text-center">
+                <p class="small text-muted fw-semibold mb-2">Since 2025, powering thousands of successful collaborations.</p>
+                <img src="https://placehold.co/1000x300/e9ecef/212529?text=Visual+of+Team+Collaboration" 
+                     class="img-fluid rounded-4 shadow-sm" alt="Team Collaboration Graphic">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Core Values Section: Icon-Focused Grid -->
+<section class="py-5 bg-white">
+    <div class="container text-center py-4">
+        <h2 class="fw-bolder mb-2 display-6">Driven By Our Values</h2>
+        <p class="lead text-secondary mb-5">These principles guide every decision we make.</p>
+        
+        <div class="row g-4">
+            
+            <!-- Value 1: Trust -->
+            <div class="col-md-6 col-lg-3">
+                <div class="p-4 rounded-4 h-100 border text-center transition-shadow hover:shadow-lg">
+                    <div class="d-inline-flex justify-content-center align-items-center rounded-circle bg-brand-primary text-white p-3 mb-3" 
+                         style="width: 60px; height: 60px;">
+                        <i class="bi bi-shield-lock-fill fs-4"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-2">Trust</h5>
+                    <p class="small text-muted">Building a safe environment through transparency and reliable escrow services.</p>
+                </div>
+            </div>
+            
+            <!-- Value 2: Integrity -->
+            <div class="col-md-6 col-lg-3">
+                <div class="p-4 rounded-4 h-100 border text-center transition-shadow hover:shadow-lg">
+                    <div class="d-inline-flex justify-content-center align-items-center rounded-circle bg-brand-primary text-white p-3 mb-3" 
+                         style="width: 60px; height: 60px;">
+                        <i class="bi bi-patch-check-fill fs-4"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-2">Integrity</h5>
+                    <p class="small text-muted">Upholding honesty and ethical practices in all our marketplace interactions.</p>
+                </div>
+            </div>
+
+            <!-- Value 3: Empowerment -->
+            <div class="col-md-6 col-lg-3">
+                <div class="p-4 rounded-4 h-100 border text-center transition-shadow hover:shadow-lg">
+                    <div class="d-inline-flex justify-content-center align-items-center rounded-circle bg-brand-primary text-white p-3 mb-3" 
+                         style="width: 60px; height: 60px;">
+                        <i class="bi bi-lightbulb-fill fs-4"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-2">Empowerment</h5>
+                    <p class="small text-muted">Giving freelancers the tools to succeed and clients the control to hire perfectly.</p>
+                </div>
+            </div>
+
+            <!-- Value 4: Agility -->
+            <div class="col-md-6 col-lg-3">
+                <div class="p-4 rounded-4 h-100 border text-center transition-shadow hover:shadow-lg">
+                    <div class="d-inline-flex justify-content-center align-items-center rounded-circle bg-brand-primary text-white p-3 mb-3" 
+                         style="width: 60px; height: 60px;">
+                        <i class="bi bi-lightning-charge-fill fs-4"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-2">Agility</h5>
+                    <p class="small text-muted">Responding quickly to market needs and evolving our platform for better efficiency.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 4. Call to Action: High Contrast -->
+<section class="py-5 bg-dark-pro text-white text-center">
+    <div class="container py-4">
+        <h2 class="fw-bold mb-3 display-5">Ready to Connect?</h2>
+        <p class="lead mb-4 text-secondary mx-auto" style="max-width: 600px;">
+            The best talent is waiting for your project, or the best projects are waiting for your talent. Start your journey now.
+        </p>
+        <a href="{% url 'signup' %}" class="btn btn-brand-primary btn-lg me-3 shadow-lg rounded-pill px-5 fw-bold">
+            Get Started
+        </a>
+        <a href="{% url 'post_project' %}" class="btn btn-outline-light btn-lg rounded-pill px-5 fw-bold">
+            Post a Project
+        </a>
+    </div>
+</section>
+
+{% endblock %}

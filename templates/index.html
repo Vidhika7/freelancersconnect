@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home | FreelancersConnect - Connect. Collaborate. Create.{% endblock %}
+
+{% block content %}
+
+<section class="py-5 py-lg-6 bg-dark-pro text-white shadow-sm border-bottom border-secondary">
+    <div class="container py-lg-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
+                <h1 class="display-4 fw-bolder mb-3">
+                    Your <span class="text-brand">Talent</span> Marketplace.
+                </h1>
+                <p class="lead mb-4 text-secondary">
+                    The ultimate destination where freelancers and clients connect, 
+                    collaborate, and create success stories together.
+                </p>
+                <div class="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start gap-3 mt-4">
+                    <a href="{% url 'find_projects' %}?role=freelancer" class="btn btn-brand-primary btn-lg rounded-pill px-5 shadow-lg fw-bold">
+                        Find a Project <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                    <a href="{% url 'post-a-job' %}?role=client" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                        Post a Job
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block text-center">
+                <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+                    <div class="carousel-inner rounded-4 shadow-lg">
+                        <div class="carousel-item active">
+                            <img src="{% static 'images/hero-1.jpg' %}" class="d-block w-100" alt="Freelancers collaborating online">
+                            <div class="carousel-caption d-none d-md-block bg-dark opacity-75 rounded-bottom-4 py-2">
+                                <h5>Innovative Projects Await.</h5>
+                                <p class="small text-brand">Your Skills. Your Terms.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'images/hero-2.jpg' %}" class="d-block w-100" alt="Client reviewing project with freelancer">
+                            <div class="carousel-caption d-none d-md-block bg-dark opacity-75 rounded-bottom-4 py-2">
+                                <h5>Flexible Work, Global Opportunities.</h5>
+                                <p class="small text-brand">Join a World of Possibilities.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'images/hero-3.jpg' %}" class="d-block w-100" alt="Team working on creative project">
+                             <div class="carousel-caption d-none d-md-block bg-dark opacity-75 rounded-bottom-4 py-2">
+                                <h5>Dedicated Support, Seamless Workflow.</h5>
+                                <p class="small text-brand">Achieve More Together.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-body-secondary">
+    <div class="container">
+        <h2 class="fw-bold text-center mb-5 text-uppercase text-dark opacity-75">Why Trust FreelancersConnect?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-lg h-100 p-3 hover-lift">
+                    <div class="card-body text-center">
+                        <div class="icon-circle mb-3 mx-auto">
+                            <i class="bi bi-person-check-fill text-brand display-5"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark">Vetted Talent</h5>
+                        <p class="text-muted small">
+                            Work only with verified and highly-rated professionals who deliver excellence every time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-lg h-100 p-3 hover-lift">
+                    <div class="card-body text-center">
+                        <div class="icon-circle mb-3 mx-auto">
+                            <i class="bi bi-shield-lock-fill text-brand display-5"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark">Secure & Escrow</h5>
+                        <p class="text-muted small">
+                            Safe, transparent, and reliable payment systems. Funds are held securely until the work is approved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-lg h-100 p-3 hover-lift">
+                    <div class="card-body text-center">
+                        <div class="icon-circle mb-3 mx-auto">
+                            <i class="bi bi-chat-dots-fill text-brand display-5"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark">Real-Time Support</h5>
+                        <p class="text-muted small">
+                            Dedicated 24/7 support to help you manage contracts, disputes, and technical issues effortlessly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="fw-bold text-center mb-5 text-uppercase text-dark">Discover Top Skills</h2>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <a href="#" class="category-link card border-0 shadow-sm h-100 text-decoration-none">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-code-slash text-brand display-6 mb-2"></i>
+                        <h6 class="fw-semibold text-dark mb-0">Web Development</h6>
+                        <p class="small text-muted mb-0">12k+ Experts</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="category-link card border-0 shadow-sm h-100 text-decoration-none">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-brush-fill text-brand display-6 mb-2"></i>
+                        <h6 class="fw-semibold text-dark mb-0">Graphic Design</h6>
+                        <p class="small text-muted mb-0">8.5k+ Experts</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="#" class="category-link card border-0 shadow-sm h-100 text-decoration-none">
+                    <div class="card-body text-center p-4">
+                        <i class="bi bi-mic-fill text-brand display-6 mb-2"></i>
+                        <h6 class="fw-semibold text-dark mb-0">Content & SEO</h6>
+                        <p class="small text-muted mb-0">9k+ Experts</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <a href="#" class="btn btn-outline-dark btn-lg rounded-pill fw-semibold px-4">
+                        View All Categories <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-body-secondary">
+    <div class="container">
+        <h2 class="fw-bold text-center mb-5 text-uppercase text-dark">Featured Top-Rated Talent</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-3 col-md-6">
+                <a href="#" class="card border-0 shadow-lg text-decoration-none text-dark h-100 profile-card">
+                    <div class="card-body text-center p-4">
+                        <img src="https://via.placeholder.com/100" class="rounded-circle mb-3 border border-4 border-white shadow-sm" alt="Aarav Sharma">
+                        <h6 class="fw-bold mb-1">Aarav Sharma</h6>
+                        <p class="text-brand small fw-semibold">Full-Stack Developer</p>
+                        <div class="d-flex justify-content-center align-items-center mt-3">
+                            <span class="badge bg-success-subtle text-success fs-6 py-2 px-3 rounded-pill fw-bold me-2">
+                                4.9 <i class="bi bi-star-fill small"></i>
+                            </span>
+                            <span class="text-muted small">| 50+ Projects</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="#" class="card border-0 shadow-lg text-decoration-none text-dark h-100 profile-card">
+                    <div class="card-body text-center p-4">
+                        <img src="https://via.placeholder.com/100" class="rounded-circle mb-3 border border-4 border-white shadow-sm" alt="Priya Verma">
+                        <h6 class="fw-bold mb-1">Priya Verma</h6>
+                        <p class="text-brand small fw-semibold">UI/UX Designer</p>
+                        <div class="d-flex justify-content-center align-items-center mt-3">
+                            <span class="badge bg-success-subtle text-success fs-6 py-2 px-3 rounded-pill fw-bold me-2">
+                                4.8 <i class="bi bi-star-fill small"></i>
+                            </span>
+                            <span class="text-muted small">| 35+ Projects</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <a href="#" class="card border-0 shadow-lg text-decoration-none text-dark h-100 profile-card">
+                    <div class="card-body text-center p-4">
+                        <img src="https://via.placeholder.com/100" class="rounded-circle mb-3 border border-4 border-white shadow-sm" alt="Rohit Mehta">
+                        <h6 class="fw-bold mb-1">Rohit Mehta</h6>
+                        <p class="text-brand small fw-semibold">Digital Marketing Strategist</p>
+                        <div class="d-flex justify-content-center align-items-center mt-3">
+                            <span class="badge bg-success-subtle text-success fs-6 py-2 px-3 rounded-pill fw-bold me-2">
+                                5.0 <i class="bi bi-star-fill small"></i>
+                            </span>
+                            <span class="text-muted small">| 70+ Projects</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-outline-dark btn-lg rounded-pill fw-semibold px-5">Browse All Freelancers</a>
+        </div>
+    </div>
+</section>
+
+<section class="bg-dark-pro text-white text-center py-5">
+    <div class="container py-4">
+        <h2 class="fw-bold mb-3 display-5">Ready to Get Started?</h2>
+        <p class="mb-5 text-light opacity-75 lead">
+            Join the community today and transform your ideas into reality.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'signup' %}?role=client" class="btn btn-brand-primary btn-lg rounded-pill px-5 fw-bold shadow-lg">
+                I Want to Hire
+            </a>
+            <a href="{% url 'signup' %}?role=freelancer" class="btn btn-outline-light btn-lg rounded-pill px-5 fw-bold">
+                I Am a Freelancer
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block title %}{{ client_user.first_name }} {{ client_user.last_name }} | Client Profile{% endblock %}
+
+{% block content %}
+
+<!-- ===== CLIENT PROFILE HEADER ===== -->
+<section class="bg-gradient py-5 text-white" style="background: linear-gradient(135deg, #0d6efd, #6610f2);">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+      
+      <!-- Profile Image -->
+      <div class="col-md-3 text-center">
+        <div class="position-relative d-inline-block">
+          <img src="{% if client_user.profile_picture %}{{ client_user.profile_picture.url }}{% else %}https://via.placeholder.com/200{% endif %}"
+               class="rounded-circle img-fluid border border-4 border-light shadow" width="180" height="180" alt="Client Profile">
+          <span class="position-absolute bottom-0 end-0 translate-middle p-2 bg-success border border-light rounded-circle"
+                title="Verified Client">
+            <i class="bi bi-check-lg text-white"></i>
+          </span>
+        </div>
+      </div>
+
+      <!-- Profile Info -->
+      <div class="col-md-9 text-center text-md-start">
+        <h1 class="fw-bold mb-1">{{ client_user.first_name }} {{ client_user.last_name }}</h1>
+        <h5 class="text-light opacity-75 mb-2">
+          {% if client_user.company_name %}
+            {{ client_user.company_name }}
+          {% else %}
+            Independent Client
+          {% endif %}
+        </h5>
+        <p class="text-white-50 mb-3">{{ client_user.bio|default:"This client hasn't added a bio yet." }}</p>
+
+        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+          {% if request.user.is_authenticated and request.user.role == 'freelancer' and request.user != client_user %}
+            <a href="{% url 'message_client' client_user.id %}" class="btn btn-light btn-sm rounded-pill px-3">
+              <i class="bi bi-envelope-fill me-1"></i> Contact Client
+            </a>
+          {% endif %}
+          <a href="{% url 'post_project' %}" class="btn btn-outline-light btn-sm rounded-pill px-3">
+            <i class="bi bi-briefcase-fill me-1"></i> Post a New Project
+          </a>
+          <a href="#client-projects" class="btn btn-outline-light btn-sm rounded-pill px-3">
+            <i class="bi bi-grid-fill me-1"></i> View Projects
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENT STATS ===== -->
+<section class="bg-light py-4 border-bottom">
+  <div class="container text-center">
+    <div class="row g-3">
+      <div class="col-md-4 col-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <h3 class="fw-bold text-primary mb-0">{{ total_projects_count }}</h3>
+            <small class="text-muted">Projects Posted</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <h3 class="fw-bold text-success mb-0">{{ open_projects_count }}</h3>
+            <small class="text-muted">Open Projects</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <h3 class="fw-bold text-warning mb-0">{{ hires_count }}</h3>
+            <small class="text-muted">Freelancers Hired</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENT PROJECTS ===== -->
+<section id="client-projects" class="py-5 bg-body-secondary">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold text-dark">
+        <i class="bi bi-briefcase-fill text-primary me-2"></i> Projects by {{ client_user.first_name }}
+      </h2>
+    </div>
+
+    {% if projects %}
+      <div class="row g-4">
+        {% for project in projects %}
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
+              <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="card-title fw-bold mb-0">{{ project.title }}</h5>
+                  <span class="badge bg-primary-subtle text-dark">{{ project.category }}</span>
+                </div>
+                <p class="text-muted small mb-3">{{ project.description|truncatechars:120 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="text-success fw-semibold">₹{{ project.budget }}</span>
+                    <br>
+                    <small class="text-muted">{{ project.created_at|date:"M d, Y" }}</small>
+                  </div>
+                  <a href="{% url 'project_detail' project.id %}" class="btn btn-outline-primary btn-sm rounded-pill">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info text-center rounded-4 shadow-sm mt-4">
+        <i class="bi bi-info-circle-fill me-2"></i>
+        This client hasn’t posted any projects yet.
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ===== CLIENT REVIEWS ===== -->
+<section class="py-5 bg-white border-top">
+  <div class="container">
+    <h3 class="fw-bold mb-4 text-dark">
+      <i class="bi bi-star-fill text-warning me-2"></i> Reviews for {{ client_user.first_name }}
+    </h3>
+
+    {% if reviews %}
+      <div class="row g-4">
+        {% for r in reviews %}
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+              <div class="card-body">
+                <p class="fst-italic text-muted mb-3">“{{ r.comment }}”</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="fw-semibold">{{ r.author.get_full_name|default:r.author.email }}</small>
+                  <span class="badge bg-warning text-dark px-3">{{ r.rating }} ★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-light border text-center shadow-sm">
+        <i class="bi bi-chat-left-text-fill me-2 text-muted"></i>No reviews yet for this client.
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Post a Job{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-body-secondary">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold">Post a Job</h1>
+            <p class="text-muted">Fill out the details below to post a new job.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm rounded-4 p-4">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!-- Company Name -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Company Name</label>
+                            <input type="text" name="company" class="form-control" placeholder="Enter your company name" required>
+                        </div>
+
+                        <!-- Job Title -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Job Title</label>
+                            <input type="text" name="title" class="form-control" placeholder="Enter job title" required>
+                        </div>
+
+                        <!-- Job Description -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Job Description</label>
+                            <textarea name="description" class="form-control" rows="5" placeholder="Describe the job in detail" required></textarea>
+                        </div>
+
+                        <!-- Skills Required -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Skills Required</label>
+                            <input type="text" name="skills" class="form-control" placeholder="E.g., Django, React, API" required>
+                        </div>
+
+                        <!-- Budget Range -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Budget Range (₹)</label>
+                            <div class="d-flex gap-2">
+                                <input type="number" name="budget_min" class="form-control" placeholder="Min" required>
+                                <input type="number" name="budget_max" class="form-control" placeholder="Max" required>
+                            </div>
+                        </div>
+
+                        <!-- Deadline Text -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Deadline</label>
+                            <input type="text" name="deadline" class="form-control" placeholder="E.g., 2-3 weeks, 1 month" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">Post Job</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

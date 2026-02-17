@@ -1,0 +1,163 @@
+/* ============== base.html ==========================
+ */
+
+/*
+ * Custom CSS for FreelancersConnect
+ * A modern, professional color palette
+ */
+
+/* 1. Define Custom Colors */
+:root {
+    --fc-brand-color: #007bff; /* A nice, vibrant blue/teal for action */
+    --fc-dark-pro: #1c2635; /* A deep, professional dark blue-gray for the footer */
+}
+
+/* 2. Custom Bootstrap/Django Template Classes */
+
+/* Brand Color for Logo and Accent */
+.text-brand {
+    color: var(--fc-brand-color) !important;
+}
+
+/* Primary CTA Button Style */
+.btn-brand-primary {
+    background-color: var(--fc-brand-color);
+    border-color: var(--fc-brand-color);
+    color: white;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-brand-primary:hover {
+    background-color: #0069d9; /* Slightly darker on hover */
+    border-color: #0069d9;
+    color: white;
+    transform: translateY(-1px); /* Subtle lift on hover */
+}
+
+/* Custom Footer Background */
+.bg-dark-pro {
+    background-color: var(--fc-dark-pro) !important;
+}
+
+/* 3. Navigation Link Hover Effect */
+.navbar-nav .nav-link {
+    transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--fc-brand-color) !important;
+}
+
+/* 4. Footer Link Hover Effect */
+.hover-opacity-100:hover {
+    opacity: 1 !important;
+    text-decoration: underline !important;
+}
+
+
+
+
+
+
+/* ======== index css ===== */
+
+/* Custom CSS to enhance the dark theme and professionalism */
+
+/* Apply to the entire body if your base.html doesn't have a background */
+body {
+    background-color: #f8f9fa; /* Light grey background for non-hero sections */
+}
+
+/* Enhances the visual appeal of the cards with a subtle hover effect */
+.card.transition-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.transition-hover:hover {
+    transform: translateY(-5px); /* Lifts the card slightly */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5) !important; /* Stronger shadow on hover */
+}
+
+/* Ensure font-awesome (fas) icons are available if you haven't included them */
+/* You would need to link to Font Awesome in your base.html */
+
+
+ /* =================== signin.html ========================== */
+
+ /* ---------- Login Page ---------- */
+/* .login-section {
+    background: linear-gradient(135deg, var(--black), var(--dark-blue));
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+} */
+
+/* .login-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(33, 37, 41, 0.9); /* dark translucent background */
+    /* border: 1px solid rgba(255, 255, 255, 0.1);
+} */
+
+/* .login-card input { */
+    /* background-color: #1e1e2f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+}
+
+.login-card input:focus {
+    background-color: #27293d;
+    box-shadow: 0 0 5px var(--mid-blue);
+    color: white;
+}
+
+.login-card .btn-primary {
+    background-color: var(--mid-blue);
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.login-card .btn-primary:hover {
+    background-color: var(--dark-blue);
+} */ */
+
+
+ /* =================== signup.html ========================== */
+
+/* --- Form Styling for {{ form.as_p }} --- */
+
+/* Apply Bootstrap's form-control styles to all inputs/selects rendered by form.as_p */
+.form-group p input[type="text"],
+.form-group p input[type="email"],
+.form-group p input[type="password"],
+.form-group p input[type="number"],
+.form-group p textarea,
+.form-group p select {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 0.5rem; /* Slightly rounded corners */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Ensure labels look good */
+.form-group p label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-weight: 600; /* Bolder label text */
+    color: #343a40;
+}
+
+/* Fix spacing for the p tags rendered by form.as_p */
+.form-group p {
+    margin-bottom: 1.5rem; 
+}

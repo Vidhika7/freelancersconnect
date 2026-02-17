@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.title }} | Project Details{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-body-secondary">
+    <div class="container">
+        <a href="{% url 'find_projects' %}" class="btn btn-outline-secondary mb-3"><i class="bi bi-arrow-left me-1"></i> Back to Projects</a>
+        <div class="card shadow-sm rounded-4 p-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1 class="fw-bold">{{ project.title }}</h1>
+                    <p class="text-muted mb-3">Posted by: <strong>{{ project.client.first_name }} {{ project.client.last_name }}</strong></p>
+                    {% if project.company_name %}<p>Company: {{ project.company_name }}</p>{% endif %}
+
+                    <h5 class="mt-4">Project Description</h5>
+                    <p>{{ project.description }}</p>
+
+                    <h5 class="mt-4">Skills Required</h5>
+                    {% for skill in skills_list %}
+                        <span class="badge bg-light text-dark fw-semibold me-1 mb-1">{{ skill }}</span>
+                    {% empty %}
+                        <p class="text-muted">No skills specified.</p>
+                    {% endfor %}
+
+                    <h5 class="mt-4">Budget & Deadline</h5>
+                    <p>
+                        <span class="badge bg-info text-dark me-2">Budget: ₹{{ project.budget_min }} - ₹{{ project.budget_max }}</span>
+                        <span class="badge bg-warning text-dark">Deadline: {{ project.deadline }}</span>
+                    </p>
+
+                    {% if user.is_authenticated and not user_proposal %}
+                    <div class="mt-4">
+                        <h5>Send Proposal</h5>
+                        <form method="post" action="{% url 'send_proposal' project.id %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label">Message</label>
+                                <textarea name="message" class="form-control" rows="4" placeholder="Write your proposal..." required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Proposed Budget (₹)</label>
+                                <input type="number" name="proposed_budget" class="form-control" placeholder="Enter budget" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary fw-bold">Send Proposal</button>
+                        </form>
+                    </div>
+                    {% elif user_proposal %}
+                        <div class="alert alert-success mt-4">You have already sent a proposal for this project.</div>
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-4 text-center mt-4 mt-lg-0">
+                    <div class="border rounded-4 p-3 shadow-sm">
+                        <h5 class="fw-bold">Client Info</h5>
+                        <p>{{ project.client.first_name }} {{ project.client.last_name }}</p>
+                        {% if project.client.email %}<p class="text-muted">{{ project.client.email }}</p>{% endif %}
+                        {% if project.client.contact_number %}<p class="text-muted">{{ project.client.contact_number }}</p>{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0"><i class="fas fa-bullhorn me-2"></i> Post Your Project</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted">Describe your project requirements clearly to attract the best talent.</p>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="id_title" class="form-label">Project Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="id_title" name="title" required placeholder="e.g., Build a responsive Django E-commerce site">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_category" class="form-label">Category <span class="text-danger">*</span></label>
+                        <select class="form-select" id="id_category" name="category" required>
+                            <option value="" disabled selected>Select a category</option>
+                            {% for choice, label in user.Project.CATEGORY_CHOICES %}
+                                <option value="{{ choice }}">{{ label }}</option>
+                            {% endfor %}
+                            <option value="Web Development">Web Development</option>
+                            <option value="Graphic Design">Graphic Design</option>
+                            <option value="Content Writing">Content Writing</option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="Mobile App Development">Mobile App Development</option>
+                            <option value="Video Editing">Video Editing</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_description" class="form-label">Description <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="id_description" name="description" rows="6" required placeholder="Provide a detailed description of the scope, deliverables, and goals."></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_skills" class="form-label">Required Skills</label>
+                        <input type="text" class="form-control" id="id_skills" name="skills" placeholder="e.g., Python, Django, HTML, Bootstrap (comma-separated)">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_file" class="form-label">Attachment (Optional)</label>
+                        <input type="file" class="form-control" id="id_file" name="file">
+                        <div class="form-text">Attach requirements documents, wireframes, or reference materials.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-4"><i class="fas fa-upload me-2"></i> Post Project</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

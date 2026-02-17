@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+      <form action="" method="post">
+        {% csrf_token %}
+        <label for="">Enter Otp :</label>
+        <input type="text" name="otp" placeholder="enter 6 digit OTP" required>
+        <input type="submit" value="Verify Otp" class="btn btn-primary btn-sm">
+
+
+      </form>
+
+
+      {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 30%;">
+                {{ message }}
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+      {% endif %}
+
+{% endblock content %}
